@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker | Stay Organized</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">📋 Job Tracker</div>
+            <div class="nav-actions">
+                <button id="darkToggle" title="Toggle dark/light mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Job Application Tracker</h1>
+            <p>Stay organized and never miss an opportunity in your job search journey</p>
+        </section>
+
+        <div class="container">
+            <!-- Add Application Form -->
+            <section class="add-section">
+                <h2 class="section-title">Add New Application</h2>
+                <form id="applicationForm" class="glass-card">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">Company Name *</label>
+                            <input type="text" id="company" name="company" required placeholder="e.g., Google">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position">Position *</label>
+                            <input type="text" id="position" name="position" required placeholder="e.g., Software Engineer">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="status">Status *</label>
+                            <select id="status" name="status" required>
+                                <option value="">Select status...</option>
+                                <option value="Applied">Applied</option>
+                                <option value="Interviewing">Interviewing</option>
+                                <option value="Offer">Offer</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="Withdrawn">Withdrawn</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Date Applied *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">✨ Add Application</button>
+                </form>
+            </section>
+
+            <!-- Statistics Dashboard -->
+            <section class="stats-section">
+                <h2 class="section-title">Your Progress</h2>
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-number" id="totalApps">0</div>
+                        <div class="stat-label">Total Applications</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">💼</div>
+                        <div class="stat-number" id="interviewingApps">0</div>
+                        <div class="stat-label">Interviewing</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">🎉</div>
+                        <div class="stat-number" id="offerApps">0</div>
+                        <div class="stat-label">Offers</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Applications List -->
+            <section class="list-section">
+                <h2 class="section-title">Your Applications</h2>
+                <div id="loadingMessage" class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading your applications...</p>
+                </div>
+                <div id="errorMessage" class="error glass-card" style="display: none;"></div>
+                <div id="applicationsList" class="applications-grid"></div>
+                <div id="emptyMessage" class="empty-message glass-card" style="display: none;">
+                    <div class="empty-icon">🚀</div>
+                    <h3>No applications yet</h3>
+                    <p>Start tracking your job search by adding your first application above!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>✏️ Edit Application</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                
+                <div class="form-group">
+                    <label for="editCompany">Company Name *</label>
+                    <input type="text" id="editCompany" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editPosition">Position *</label>
+                    <input type="text" id="editPosition" name="position" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStatus">Status *</label>
+                    <select id="editStatus" name="status" required>
+                        <option value="Applied">Applied</option>
+                        <option value="Interviewing">Interviewing</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editDate">Date Applied *</label>
+                    <input type="date" id="editDate" name="date" required>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-primary">Update Application</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Job Application Tracker. Built with ❤️ by Alphiosjunior Ngqele</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
